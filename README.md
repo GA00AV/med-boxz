@@ -86,7 +86,15 @@ CONSULTATIONS_COLLECTION="consultations"
 MONGO_URI="mongodb://localhost:27017"
 REDIS_URL="redis://localhost:6379/0"
 ```
-
+### 1️⃣ Activate Virtual environment
+Windows
+```cmd
+.venv\Scripts\activate
+```
+macOS/Linux
+```bash
+source .venv/bin/activate
+```
 ### 3️⃣ Apply migrations to MongoDB (ONLY FOR FIRST TIME)
 
 ````commandline
