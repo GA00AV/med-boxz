@@ -29,7 +29,6 @@ The backend includes real-world integrations:
 
 * **MongoDB** → Store users, doctors, consultations, manual reviews
 * **Redis** → Handle time slot reservations + token tracking
-* **JWT** → Generate secure payment links
 * **Tavily Search** → Web search for identifying doctor speciality from symptoms
 * **LangGraph State Machine** → Multi-step conversational workflow
 * **Custom Tools** for all operations (booking, cancellation, fetching data, etc.)
@@ -50,7 +49,6 @@ A clean chat interface where users interact with the AI assistant in real time.
 * 🤖 Google Gemini 2.5 Flash
 * 🍃 MongoDB
 * ⚡ Redis
-* 🔑 JWT (via python-jose)
 * 🌍 Tavily Search API
 * 🔧 Python (Backend Toolkit)
 
