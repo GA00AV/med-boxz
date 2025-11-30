@@ -267,6 +267,12 @@ def get_payment_link_for_consultation(patient_email:str, consultation_id:str)->s
         print(f"getting error from get_payment_link_for_consultation: {e}")
         return "Internal Server Error"
 
+# gemini only
+def return_output_from_ai_message(content) -> str:
+    if isinstance(content, list):
+        return content[0]['text']
+    else:
+        return content
 
 SYSTEM_PROMPT = """You are **Med-Boxz**, an AI assistant that helps users manage medical consultations with doctors on the Med-Boxz platform.
 
@@ -496,5 +502,5 @@ if __name__ == "__main__":
             break
         INITIAL_VALUE.messages.append(HumanMessage(q))
         response = GRAPH.invoke(INITIAL_VALUE)
-        print(response['messages'][-1].content)
+        print(return_output_from_ai_message(response['messages'][-1].content))
         INITIAL_VALUE = State(messages=response['messages'])
