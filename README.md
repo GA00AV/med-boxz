@@ -7,6 +7,9 @@ MedBoxz is an intelligent medical consultation platform that allows users to **b
 This project demonstrates a **full AI workflow orchestration** using LangGraph + LLMs + real backend tools.
 
 ---
+## 🎥 **Demo**
+
+
 
 ## 🚀 **Features**
 
@@ -58,8 +61,6 @@ A clean chat interface where users interact with the AI assistant in real time.
 
 ---
 
-
-
 ## 💻 **Running Locally**
 
 ### 1️⃣ Install Dependencies
@@ -100,7 +101,3 @@ streamlit run src/main.py
 python "src/API handler.py"
 ```
 ---
-
-## 🎥 **Demo**
-
-http://demo.com
