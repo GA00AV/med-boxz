@@ -195,6 +195,9 @@ def cancel_consultation_and_initiate_refund(consultation_id:str)->str:
             consultation = CONSULTATIONS.find_one({"_id": ObjectId(consultation_id)})
         if consultation['status'] == "waiting" or consultation['status'] == "booked":
             CONSULTATIONS.update_one({"_id":ObjectId(consultation_id)}, {"$set": {"status": 'cancelled', "payment":"refund-initiated"}})
+            val = REDIS_CLIENT.get(f"{consultation['doctor_id']}/{consultation['date']}/{consultation['timing']}")
+            if val:
+                REDIS_CLIENT.delete(f"{consultation['doctor_id']}/{consultation['date']}/{consultation['timing']}")
             return f"refund initiated for consultation with id: {consultation_id}"
         else:
             return f"Consultation can't be cancelled as it is already in status:{consultation['status']}"
