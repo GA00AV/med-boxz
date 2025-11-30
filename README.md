@@ -19,7 +19,6 @@ Built using **LangGraph** and **Google Gemini 2.5 Flash**, the AI assistant can:
 * Cancel consultations & initiate refunds
 * Retrieve payment links
 * Apply for manual reviews
-* Enforce strict safety & privacy rules (HIPAA-like constraints)
 
 ---
 
