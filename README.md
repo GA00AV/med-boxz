@@ -12,7 +12,7 @@ This project demonstrates a **full AI workflow orchestration** using LangGraph +
 
 ### ⭐ AI-Powered Consultation Assistant
 
-Built using **LangGraph** and **Google Gemini 2.5 Flash**, the AI assistant can:
+Built using **LangGraph** and **Google Gemini**, the AI assistant can:
 
 * Book appointments (doctor selection, time slots, payment link creation)
 * Access verified patient history
