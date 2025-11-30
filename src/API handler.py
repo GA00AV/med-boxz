@@ -1,5 +1,4 @@
 from bson import ObjectId
-from jose import jwt, JWTError
 from pymongo import MongoClient
 from redis import Redis
 from fastapi import FastAPI, HTTPException, Request
@@ -7,6 +6,7 @@ from fastapi.templating import Jinja2Templates
 import uvicorn
 import os
 from dotenv import load_dotenv
+from json import loads
 
 load_dotenv()
 templates = Jinja2Templates(directory="webpage")
@@ -20,15 +20,12 @@ app = FastAPI()
 def get_payment_page(token: str, request:Request):
     try:
         #check if data on redis
-        if not REDIS_CLIENT.get(f"token_{token}"):
+        value_string = REDIS_CLIENT.get(f"token_{token}")
+        if not value_string:
             raise HTTPException(status_code=404, detail="Invalid payment link.")
-        #check token
-        try:
-            value = jwt.decode(token, os.environ["SECRET_KEY"])
-            print("came here")
+        else:
+            value = loads(value_string)
             return templates.TemplateResponse("payment_page.html", {"request":request,"email":value['email'], "price":value["price"]})
-        except JWTError:
-            raise HTTPException(status_code=404, detail="Invalid token.")
     except HTTPException as e:
         raise e
     except Exception as e:
@@ -39,16 +36,15 @@ def get_payment_page(token: str, request:Request):
 def process_payment(token: str):
     try:
         # check if data on redis
-        if not REDIS_CLIENT.get(f"token_{token}"):
+        value_string = REDIS_CLIENT.get(f"token_{token}")
+        if not value_string:
             raise HTTPException(status_code=404, detail="Invalid payment link.")
-        # check token
-        try:
-            value = jwt.decode(token, os.environ["SECRET_KEY"])
+        else:
+            value = loads(value_string)
             CONSULTATIONS.update_one({"_id":ObjectId(value["consultation_id"])}, {"$set":{"status": "booked", "payment":"received"}})
             REDIS_CLIENT.delete(f"token_{token}")
             return {"success": True}
-        except JWTError:
-            raise HTTPException(status_code=404, detail="Invalid token.")
+
     except HTTPException as e:
         raise e
     except Exception:

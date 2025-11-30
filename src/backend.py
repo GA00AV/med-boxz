@@ -7,9 +7,10 @@ from datetime import datetime
 from pydantic import BaseModel
 from typing import Annotated
 from dotenv import load_dotenv
-from jose import jwt
 import os
 from tavily import TavilyClient
+from uuid import uuid4
+from json import dumps
 from bson import ObjectId
 from redis import Redis
 load_dotenv()
@@ -263,8 +264,8 @@ def get_payment_link_for_consultation(patient_email:str, consultation_id:str)->s
         "price":"1000",
         "consultation_id":str(consultation_id)
     }
-        token = jwt.encode(value, os.environ['SECRET_KEY'])
-        REDIS_CLIENT.set(f"token_{token}", "True")
+        token = str(uuid4())
+        REDIS_CLIENT.set(f"token_{token}", dumps(value))
         return f"http://localhost:8000/pay/{token}"
     except Exception as e:
         print(f"getting error from get_payment_link_for_consultation: {e}")
