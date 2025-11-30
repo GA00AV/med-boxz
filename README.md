@@ -75,7 +75,6 @@ Create `.env` file:
 ```
 GOOGLE_API_KEY=...
 TAVILY_API_KEY=...
-SECRET_KEY="secret"
 DB_NAME="medboxz"
 USER_COLLECTION="users"
 MANUAL_REVIEWS_COLLECTION="manual_reviews"
