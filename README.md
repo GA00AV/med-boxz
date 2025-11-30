@@ -87,9 +87,11 @@ MONGO_URI="mongodb://localhost:27017"
 REDIS_URL="redis://localhost:6379/0"
 ```
 
-### 3️⃣ Run Backend as Module
+### 3️⃣ Apply migrations to MongoDB
 
-The backend is imported directly in the frontend.
+````commandline
+python migrations.py
+````
 
 ### 4️⃣ Start Streamlit UI
 
