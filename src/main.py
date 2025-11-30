@@ -1,5 +1,5 @@
 import streamlit as st
-from backend import GRAPH, INITIAL_VALUE
+from backend import GRAPH, INITIAL_VALUE, return_output_from_ai_message
 from langchain_core.messages import HumanMessage, AIMessage
 
 st.set_page_config(page_title="MED-BOXZ", page_icon="🩺", layout="centered")
@@ -17,7 +17,7 @@ for msg in st.session_state.messages:
             st.write(msg.content)
     if isinstance(msg, AIMessage) and msg.content:
         with st.chat_message("ai"):
-            st.write(msg.content)
+            st.write(return_output_from_ai_message(msg.content))
 
 # Chat input box
 user_input = st.chat_input("Type your query...")
@@ -32,7 +32,7 @@ if user_input:
     # Generate response
     try:
         response = GRAPH.invoke(st.session_state)
-        reply = response['messages'][-1].content
+        reply = return_output_from_ai_message(response['messages'][-1].content)
         st.session_state.messages = response['messages']
         with st.chat_message("ai"):
             st.write(reply)
