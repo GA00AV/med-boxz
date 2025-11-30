@@ -87,7 +87,7 @@ MONGO_URI="mongodb://localhost:27017"
 REDIS_URL="redis://localhost:6379/0"
 ```
 
-### 3️⃣ Apply migrations to MongoDB
+### 3️⃣ Apply migrations to MongoDB (ONLY FOR FIRST TIME)
 
 ````commandline
 python migrations.py
@@ -98,7 +98,11 @@ python migrations.py
 ```sh
 streamlit run src/main.py
 ```
+### 4️⃣ Run API_handler for payments
 
+```sh
+python "src/API handler.py"
+```
 ---
 
 ## 🎥 **Demo**
