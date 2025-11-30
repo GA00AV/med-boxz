@@ -18,7 +18,7 @@ REDIS_CLIENT = Redis.from_url(os.environ['REDIS_URL'])
 client = MongoClient(os.environ['MONGO_URI'])
 database = client[os.environ["DB_NAME"]]
 Users = database[os.environ["USER_COLLECTION"]]
-CONSULTATIONS = database[os.environ["CONSULTATION_COLLECTION"]]
+CONSULTATIONS = database[os.environ["CONSULTATIONS_COLLECTION"]]
 MANUAL_REVIEWS = database[os.environ["MANUAL_REVIEWS_COLLECTION"]]
 
 # USERS = [{"name":"Dr. Ganesh Ji", "id":"string", "email":"ganesh@medboxz.in", "role":"doctor",  "speciality":"Dermatology"},
