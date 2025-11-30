@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from json import loads
 
 load_dotenv()
-templates = Jinja2Templates(directory="webpage")
+templates = Jinja2Templates(directory="src/webpage")
 REDIS_CLIENT = Redis.from_url(os.environ['REDIS_URL'])
 client = MongoClient(os.environ["MONGO_URI"])
 database = client[os.environ["DB_NAME"]]
